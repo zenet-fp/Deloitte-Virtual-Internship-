@@ -1,23 +1,25 @@
 import json, unittest, datetime
 from msvcrt import kbhit
 
-with open("./data-1.json", "r") as f:
+with open("./data-1.json", "r", encoding="utf-8") as f:
     jsonData1 = json.load(f)
-with open("./data-2.json", "r") as f:
+
+with open("./data-2.json", "r", encoding="utf-8") as f:
     jsonData2 = json.load(f)
-with open("./data-result.json", "r") as f:
+
+with open("./data-result.json", "r", encoding="utf-8") as f:
     jsonExpectedResult = json.load(f)
 
 
 def convertFromFormat1(jsonObject):
     # IMPLEMENT: Conversion From Type 1
 
-    location__ = jsonObject.get['location'].split('/')
+    location__ = jsonObject['location'].split('/')
 
     converted_file = {
-        'deviceID' : jsonObject[0],
-        'deviceType' : jsonObject[1],
-        'timestamp' : jsonObject[2],
+        'deviceID' : jsonObject['deviceID'],
+        'deviceType' : jsonObject['deviceType'],
+        'timestamp' : jsonObject['timestamp'],
 
         'location' : {
             'country' : location__[0],
@@ -30,7 +32,10 @@ def convertFromFormat1(jsonObject):
         'data' : {
             'status' : jsonObject['operationStatus'],
             'temperature' : jsonObject['temp']
+
+
         }
+
     }
 
     return converted_file
@@ -38,7 +43,6 @@ def convertFromFormat1(jsonObject):
 
 def convertFromFormat2(jsonObject):
     # IMPLEMENT: Conversion From Type 1
-  
     # inspiration from https://stackoverflow.com/questions/60442518/python-3-convert-iso-8601-to-milliseconds/60443033#60443033
     millisec = datetime.datetime(2021, 6, 23, 10, 57, 17).timestamp()
 
@@ -54,7 +58,7 @@ def convertFromFormat2(jsonObject):
             'city' : jsonObject['city'],
             'area' : jsonObject['area'],
             'factory' : jsonObject['factory'],
-            'section' : jsonData1['section-1']
+            'section' : jsonObject['section']
 
         },
 
@@ -65,6 +69,8 @@ def convertFromFormat2(jsonObject):
         }
 
     }
+
+
     return converted_file
 
 
@@ -75,7 +81,6 @@ def main(jsonObject):
         result = convertFromFormat1(jsonObject)
     else:
         result = convertFromFormat2(jsonObject)
-
     return result
 
 
@@ -106,4 +111,4 @@ class TestSolution(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(argv=[''], exit=False)
