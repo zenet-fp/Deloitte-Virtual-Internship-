@@ -1,0 +1,7 @@
+=@IFS(C2>20, "Highly Discriminative", C2<-20, "Highly Discriminative", C2<-10, "Unfair", C2>10, "Unfair", C2>=-10, "Fair", C2<=10, "Fair")
+
+(Employees' 'Equality Score' is shown in column C, the lower it is the further it is away from equality, and the higher it is, the closer it is to being equal)
+
+This is a simple IF statement which checks the cell value and compares it will hard coded values, for example, if an employee's equality score is less than -20, then this is 'Highly Discriminative'.
+
+Such an IF statement is very simple but powerful to understanding who is being paid fairly and unfairly.
